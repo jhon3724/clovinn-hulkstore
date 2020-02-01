@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="ISO-8859-1">
+<title>Hulk Store - Inventario</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-4">
+		<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje!=null}"
+			th:text="${mensaje}"
+			class="alert">
+		</div>
+		
+		<a th:href="@{/}" class="btn btn-warning mb-4">Regresar</a>
+		
+		<div class="section">
+			<form th:action="@{/actualizar-inventario}" th:object="${inventarioForm}" method="POST">
+				<div class="card">
+					<div class="card-header">
+						<h3>Inventario</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Categoria</label>
+								<select class="form-control" th:field="*{ultimaAccion}" id="accion" onchange="controlCampoCosto()">
+								    <option value="">Seleccione el Movimiento</option>
+								    <option value="A">Aumentar Inventario</option>
+								    <option value="D">Disminuir Inventario</option>
+							    </select>
+							</div>
+							<div class="form-group col-md-6">
+								<label>Producto</label>
+								<select class="form-control" th:field="*{producto.id}">
+								    <option th:each="prod : ${productos}" th:value="${prod.id}" th:text="${prod.nombre}"></option>
+							    </select>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Cantidad</label>
+								<input th:field="*{cantidad}" type="number" class="form-control"/>
+							</div>
+							<div class="form-group col-md-6" id="divCosto">
+								<label>Costo Unitario</label>
+								<input th:field="*{costoUnitario}" type="number" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer" align="center">
+						<input type="submit" value="Guardar" class="btn btn-success btn-lg">
+					</div>
+				
+			</form>
+		</div>
+	
+		<table class="table table-dark mt-4">
+			<thead>
+				<tr>
+					<th>Producto</th>
+					<th>Cantidad</th>
+					<th>Costo Unitario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="inventario:${inventario}">
+					<td th:text="${inventario.producto.nombre}"></th>
+					<td th:text="${inventario.cantidad}"></th>
+					<td th:text="${inventario.costoUnitario}"></th>
+				</tr>
+				<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+				  	crossorigin="anonymous"></script>
+				<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+				<script src="/funciones.js"></script>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

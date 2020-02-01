@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="ISO-8859-1">
+<title>Hulk Store - Productos</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-4">
+		<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje!=null}"
+			th:text="${mensaje}"
+			class="alert">
+		</div>
+	
+		<a th:href="@{/nuevo-producto}" class="btn btn-primary mb-4">Nuevo Producto</a>
+		<a th:href="@{/}" class="btn btn-warning mb-4">Regresar</a>
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Descripci&oacute;n</th>
+					<th>Precio Venta</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="producto:${productos}">
+					<td th:text="${producto.id}"></th>
+					<td th:text="${producto.nombre}"></th>
+					<td th:text="${producto.descripcion}"></th>
+					<td th:text="${producto.precioVenta}"></th>
+					<td>
+						<a th:href="@{/editar/}+${producto.id}" class="btn btn-warning">Editar</a>
+						<a th:onclick="eliminar([[${producto.id}]])" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>
+				<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+				  	crossorigin="anonymous"></script>
+				<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+				<script src="/funciones.js"></script>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>
