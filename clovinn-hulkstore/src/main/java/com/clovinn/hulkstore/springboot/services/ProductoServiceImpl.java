@@ -18,6 +18,10 @@ public class ProductoServiceImpl implements IProductoService {
 	@Autowired
 	private IProductoDao productoDao;
 	
+	public ProductoServiceImpl(IProductoDao productoDao) {
+		this.productoDao = productoDao;
+	}
+	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Producto> findAll() {

@@ -26,8 +26,12 @@ import com.clovinn.hulkstore.springboot.utilities.Utilidades;
 @Controller
 public class ProductoController {
 
-	@Autowired
 	private IProductoService productoService;
+	
+	@Autowired
+	public ProductoController(IProductoService productoService) {
+		this.productoService = productoService;
+	}
 	
 	private final Logger log = LoggerFactory.getLogger(ProductoController.class);
 	

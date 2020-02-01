@@ -27,11 +27,14 @@ import com.clovinn.hulkstore.springboot.utilities.Utilidades;
 @Controller
 public class InventarioController {
 	
-	@Autowired
 	private IInventarioService inventarioService;
+	private IProductoService productoService;
 	
 	@Autowired
-	private IProductoService productoService;
+	public InventarioController(IInventarioService inventarioService, IProductoService productoService){
+		this.inventarioService = inventarioService;
+		this.productoService = productoService;
+	}
 	
 	private final Logger log = LoggerFactory.getLogger(InventarioController.class);
 	

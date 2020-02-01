@@ -15,8 +15,12 @@ public class InventarioServiceImpl implements IInventarioService {
 	
 	private static final String AUMENTAR_INVENTARIO ="A";
 
-	@Autowired
 	private IInventarioDao inventarioDao;
+	
+	@Autowired
+	public InventarioServiceImpl(IInventarioDao inventarioDao) {
+		this.inventarioDao = inventarioDao;
+	}
 	
 	@Override
 	@Transactional(readOnly = true)
