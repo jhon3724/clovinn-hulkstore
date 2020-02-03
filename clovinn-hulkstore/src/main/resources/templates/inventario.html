@@ -27,7 +27,7 @@
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label>Categoria</label>
-								<select class="form-control" th:field="*{ultimaAccion}" id="accion" onchange="controlCampoCosto()">
+								<select class="form-control" th:field="*{ultimaAccion}" id="accion" onchange="controlCampoCosto()" required>
 								    <option value="">Seleccione el Movimiento</option>
 								    <option value="A">Aumentar Inventario</option>
 								    <option value="D">Disminuir Inventario</option>
@@ -35,7 +35,7 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label>Producto</label>
-								<select class="form-control" th:field="*{producto.id}">
+								<select class="form-control" th:field="*{producto.id}" required>
 								    <option th:each="prod : ${productos}" th:value="${prod.id}" th:text="${prod.nombre}"></option>
 							    </select>
 							</div>
@@ -43,11 +43,11 @@
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label>Cantidad</label>
-								<input th:field="*{cantidad}" type="number" class="form-control"/>
+								<input th:field="*{cantidad}" type="number" class="form-control" required/>
 							</div>
 							<div class="form-group col-md-6" id="divCosto">
 								<label>Costo Unitario</label>
-								<input th:field="*{costoUnitario}" type="number" class="form-control"/>
+								<input th:field="*{costoUnitario}" type="number" class="form-control" required/>
 							</div>
 						</div>
 					</div>

@@ -1,12 +1,8 @@
 package com.clovinn.hulkstore.springboot.services;
 
 import java.util.List;
-
-import javax.validation.Valid;
 import com.clovinn.hulkstore.springboot.entities.Inventario;
-import com.clovinn.hulkstore.springboot.entities.ResultadoMovimiento;
-
-
+import com.clovinn.hulkstore.springboot.utilities.InventarioException;
 
 public interface IInventarioService {
 
@@ -18,6 +14,9 @@ public interface IInventarioService {
 
 	Inventario save(Inventario inventario);
 
-	ResultadoMovimiento movimientoInventario(Inventario inventarioInicial, @Valid Inventario entradaInventario);
+	String actualizarInventario(Inventario movimientoInventario) throws InventarioException;
+
+	Inventario movimientoInventario(Inventario inventarioInicial, Inventario entradaInventario)
+			throws InventarioException;
 
 }
